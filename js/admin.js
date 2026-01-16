@@ -171,6 +171,11 @@ const AdminPanel = (function() {
             if (emailInput) {
                 emailInput.value = settings.email || '';
             }
+
+            const twitterInput = document.getElementById('settings-twitter');
+            if (twitterInput) {
+                twitterInput.value = settings.twitterHandle || '';
+            }
         }
 
         renderSocialLinks();
@@ -186,6 +191,12 @@ const AdminPanel = (function() {
         if (!portfolioData.settings?.meta) return;
 
         const meta = portfolioData.settings.meta;
+
+        const ogImageInput = document.getElementById('meta-og-image');
+        if (ogImageInput) {
+            ogImageInput.value = portfolioData.settings.ogImage || '';
+        }
+
         populateMetaLanguageTabs(meta);
     }
 
@@ -447,6 +458,8 @@ const AdminPanel = (function() {
     function collectFormData() {
         const fontInput = document.getElementById('settings-font');
         const emailInput = document.getElementById('settings-email');
+        const twitterInput = document.getElementById('settings-twitter');
+        const ogImageInput = document.getElementById('meta-og-image');
 
         const data = {
             settings: {
@@ -460,7 +473,9 @@ const AdminPanel = (function() {
                 },
                 socialLinks: collectSocialLinks(),
                 email: emailInput ? emailInput.value : '',
+                twitterHandle: twitterInput ? twitterInput.value.trim() : '',
                 meta: collectMeta(),
+                ogImage: ogImageInput ? ogImageInput.value.trim() : '',
                 customFonts: portfolioData.settings?.customFonts || []
             },
             portfolio: collectPortfolio()

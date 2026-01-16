@@ -100,6 +100,11 @@
                             <label for="settings-email">이메일 주소</label>
                             <input type="email" id="settings-email" class="form-input" placeholder="studio@example.com">
                         </div>
+                        <div class="form-group">
+                            <label for="settings-twitter">트위터(X) 핸들</label>
+                            <input type="text" id="settings-twitter" class="form-input" placeholder="@YourStudio">
+                            <small class="form-help">SNS 공유 시 표시되는 트위터 계정 (예: @PixelAcheStudio)</small>
+                        </div>
                     </div>
 
                     <div class="card">
@@ -225,6 +230,15 @@
                         <p class="form-help" style="margin-bottom: 1.5rem;">
                             각 언어별로 사이트 제목과 설명을 설정합니다. SEO 및 소셜 카드에 사용됩니다.
                         </p>
+
+                        <div class="form-group" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--background); border-radius: 8px;">
+                            <label for="meta-og-image">
+                                <i class="fas fa-image" style="margin-right: 0.5rem; color: var(--primary);"></i>
+                                OG 이미지 (소셜 공유용)
+                            </label>
+                            <input type="text" id="meta-og-image" class="form-input" placeholder="https://example.com/og-image.png">
+                            <small class="form-help">SNS 공유 시 표시되는 대표 이미지입니다. 권장 크기: 1200x630px</small>
+                        </div>
 
                         <div class="lang-tabs" id="meta-lang-tabs">
                         </div>

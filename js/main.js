@@ -162,8 +162,54 @@ function updateLanguage() {
         if (meta) {
             document.title = meta.title;
             document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description);
+
+            updateSiteMetaTags(meta.title, meta.description);
         }
     }
+}
+
+function updateSiteMetaTags(title, description) {
+    const updateMeta = (property, content) => {
+        let meta = document.querySelector(`meta[property="${property}"]`);
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.setAttribute('property', property);
+            document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', content);
+    };
+
+    const updateMetaName = (name, content) => {
+        let meta = document.querySelector(`meta[name="${name}"]`);
+        if (!meta) {
+            meta = document.createElement('meta');
+            meta.setAttribute('name', name);
+            document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', content);
+    };
+
+    const toAbsoluteUrl = (url) => {
+        if (!url) return url;
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            return url;
+        }
+        const baseUrl = window.location.origin.includes('localhost')
+            ? 'https://pixelachestudio.github.io'
+            : window.location.origin;
+        return `${baseUrl}/${url.replace(/^\.\//, '')}`;
+    };
+
+    const ogImage = data.settings.ogImage || 'images/logo.png';
+    const imageUrl = toAbsoluteUrl(ogImage);
+
+    updateMeta('og:title', title);
+    updateMeta('og:description', description);
+    updateMeta('og:image', imageUrl);
+
+    updateMetaName('twitter:title', title);
+    updateMetaName('twitter:description', description);
+    updateMetaName('twitter:image', imageUrl);
 }
 
 function renderContent() {
@@ -182,16 +228,9 @@ function renderSocialLinks() {
     const container = document.getElementById('socialLinks');
     if (!container || !data.settings || !data.settings.socialLinks) return;
 
-    const iconMap = {
-        'twitter': 'fab fa-x-twitter',
-        'bluesky': 'fas fa-cloud',
-        'instagram': 'fab fa-instagram',
-        'youtube': 'fab fa-youtube'
-    };
-
     container.innerHTML = data.settings.socialLinks
         .map(link => {
-            const iconClass = iconMap[link.platform] || 'fas fa-link';
+            const iconClass = link.icon || 'fas fa-link';
             return `
                 <a href="${link.url}" target="_blank" rel="noopener noreferrer" class="social-link" title="${link.platform}">
                     <i class="${iconClass}"></i>
@@ -203,10 +242,9 @@ function renderSocialLinks() {
 
 function renderFooterEmail() {
     const emailElement = document.getElementById('footerEmail');
-    if (!emailElement || !data.settings) return;
+    if (!emailElement || !data.settings || !data.settings.email) return;
 
-    const emailLabel = translations[currentLang]['email'] || 'Email';
-    emailElement.innerHTML = `${emailLabel}: <a href="mailto:${data.settings.email}">${data.settings.email}</a>`;
+    emailElement.innerHTML = `<a href="mailto:${data.settings.email}">${data.settings.email}</a>`;
 }
 
 function renderHomePage() {
@@ -410,8 +448,11 @@ function updateMetaTags(item) {
     const imageUrl = toAbsoluteUrl(item.socialCard.image);
     const pageUrl = window.location.href;
 
+    const siteName = data.settings.meta?.[currentLang]?.title || 'Pixel Ache Studio';
+    const twitterHandle = data.settings.twitterHandle || '';
+
     updateMeta('og:type', 'article');
-    updateMeta('og:site_name', 'Pixel Ache Studio');
+    updateMeta('og:site_name', siteName);
     updateMeta('og:title', item.socialCard.title);
     updateMeta('og:description', item.socialCard.description);
     updateMeta('og:image', imageUrl);
@@ -420,12 +461,14 @@ function updateMetaTags(item) {
     updateMeta('og:url', pageUrl);
 
     updateMetaName('twitter:card', 'summary_large_image');
-    updateMetaName('twitter:site', '@PixelAcheStudio');
+    if (twitterHandle) {
+        updateMetaName('twitter:site', twitterHandle);
+    }
     updateMetaName('twitter:title', item.socialCard.title);
     updateMetaName('twitter:description', item.socialCard.description);
     updateMetaName('twitter:image', imageUrl);
 
-    document.title = `${item.socialCard.title} - Pixel Ache Studio`;
+    document.title = `${item.socialCard.title} - ${siteName}`;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
         metaDescription.setAttribute('content', item.socialCard.description);
