@@ -1,0 +1,171 @@
+{
+  "settings": {
+    "font": "Galmuri9",
+    "colors": {
+      "primary": "#00FF00",
+      "secondary": "#00FFFF",
+      "background": "#0A0A0F",
+      "text": "#FFFFFF",
+      "accent": "#B100FF"
+    },
+    "socialLinks": [
+      {
+        "platform": "twitter",
+        "url": "https://x.com/PixelAcheStudio",
+        "icon": "fab fa-twitter"
+      },
+      {
+        "platform": "bluesky",
+        "url": "https://bsky.app/profile/pixelachestudio.bsky.social",
+        "icon": "fab fa-cloud"
+      },
+      {
+        "platform": "instagram",
+        "url": "https://instagram.com/pixelachestudio",
+        "icon": "fab fa-instagram"
+      },
+      {
+        "platform": "youtube",
+        "url": "https://youtube.com/@PixelAcheStudio",
+        "icon": "fab fa-youtube"
+      }
+    ],
+    "email": "pixel.ache.studio@gmail.com",
+    "meta": {
+      "ko": {
+        "title": "Pixel Ache Studio",
+        "description": "픽셀 아트 기반 인디 게임 개발 스튜디오"
+      },
+      "en": {
+        "title": "Pixel Ache Studio",
+        "description": "Pixel art based indie game development studio"
+      },
+      "ja": {
+        "title": "Pixel Ache Studio",
+        "description": "ピクセルアートベースのインディーゲーム開発スタジオ"
+      }
+    }
+  },
+  "portfolio": [
+    {
+      "id": "featured",
+      "featured": true,
+      "content": {
+        "ko": {
+          "title": "대표 게임 제목",
+          "description": "이 게임은 픽셀 아트 스타일의 멋진 게임입니다. 다양한 모험을 즐겨보세요.",
+          "tags": [
+            "액션",
+            "어드벤처"
+          ]
+        },
+        "en": {
+          "title": "Featured Game Title",
+          "description": "This is an amazing pixel art style game. Enjoy various adventures.",
+          "tags": [
+            "Action",
+            "Adventure"
+          ]
+        },
+        "ja": {
+          "title": "代表ゲームタイトル",
+          "description": "このゲームはピクセルアートスタイルの素晴らしいゲームです。様々な冒険をお楽しみください。",
+          "tags": [
+            "アクション",
+            "アドベンチャー"
+          ]
+        }
+      },
+      "link": "https://store.steampowered.com/app/1284190/The_Planet_Crafter/",
+      "youtubeUrl": "https://www.youtube.com/watch?v=example",
+      "imageUrl": "",
+      "socialCard": {
+        "title": "Featured Game - Pixel Ache Studio",
+        "description": "Check out our latest game!",
+        "image": "./images/featured-game.png"
+      },
+      "createdAt": "2026-01-14T00:00:00Z",
+      "linkType": "auto"
+    },
+    {
+      "id": "1",
+      "featured": false,
+      "content": {
+        "ko": {
+          "title": "게임 프로젝트 1",
+          "description": "첫 번째 게임 프로젝트 설명입니다.",
+          "tags": [
+            "퍼즐",
+            "싱글플레이"
+          ]
+        },
+        "en": {
+          "title": "Game Project 1",
+          "description": "Description of the first game project.",
+          "tags": [
+            "Puzzle",
+            "Single-player"
+          ]
+        },
+        "ja": {
+          "title": "ゲームプロジェクト1",
+          "description": "最初のゲームプロジェクトの説明です。",
+          "tags": [
+            "パズル",
+            "シングルプレイ"
+          ]
+        }
+      },
+      "link": "https://store.steampowered.com/app/1284190/The_Planet_Crafter/",
+      "youtubeUrl": "",
+      "imageUrl": "./images/game1.png",
+      "socialCard": {
+        "title": "Game Project 1",
+        "description": "Our first game project",
+        "image": "./images/game1.png"
+      },
+      "createdAt": "2026-01-13T00:00:00Z",
+      "linkType": "auto"
+    },
+    {
+      "id": "2",
+      "featured": false,
+      "content": {
+        "ko": {
+          "title": "게임 프로젝트 2",
+          "description": "두 번째 게임 프로젝트 설명입니다.",
+          "tags": [
+            "RPG",
+            "멀티플레이"
+          ]
+        },
+        "en": {
+          "title": "Game Project 2",
+          "description": "Description of the second game project.",
+          "tags": [
+            "RPG",
+            "Multi-player"
+          ]
+        },
+        "ja": {
+          "title": "ゲームプロジェクト2",
+          "description": "2番目のゲームプロジェクトの説明です。",
+          "tags": [
+            "RPG",
+            "マルチプレイ"
+          ]
+        }
+      },
+      "link": "",
+      "youtubeUrl": "",
+      "imageUrl": "./images/game2.png",
+      "socialCard": {
+        "title": "Game Project 2",
+        "description": "Our second game project",
+        "image": "./images/game2.png"
+      },
+      "createdAt": "2026-01-12T00:00:00Z",
+      "linkType": "auto"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Ache Studio</title>
+    <meta name="description" content="픽셀 아트 기반 인디 게임 개발 스튜디오">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Pixel Ache Studio">
+    <meta property="og:title" content="Pixel Ache Studio">
+    <meta property="og:description" content="픽셀 아트 기반 인디 게임 개발 스튜디오">
+    <meta property="og:image" content="https://pixelachestudio.github.io/images/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://pixelachestudio.github.io">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@PixelAcheStudio">
+    <meta name="twitter:title" content="Pixel Ache Studio">
+    <meta name="twitter:description" content="픽셀 아트 기반 인디 게임 개발 스튜디오">
+    <meta name="twitter:image" content="https://pixelachestudio.github.io/images/logo.png">
+
+    <link rel="icon" type="image/x-icon" href="./images/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="header-left">
+                <nav class="nav">
+                    <a href="#home" class="nav-link active" data-i18n="nav.home">홈</a>
+                    <a href="#news" class="nav-link" data-i18n="nav.news">소식</a>
+                </nav>
+            </div>
+
+            <div class="header-right">
+                <div class="social-links" id="socialLinks">
+                </div>
+                <div class="language-selector-wrapper">
+                    <i class="fas fa-globe"></i>
+                    <select id="languageSelector" class="language-selector">
+                        <option value="ko">한국어</option>
+                        <option value="en">English</option>
+                        <option value="ja">日本語</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="home-section">
+        <div class="home-background">
+            <div class="pixel-grid"></div>
+            <div class="glow-effect"></div>
+            <div class="floating-particles">
+                <div class="particle particle-1"></div>
+                <div class="particle particle-2"></div>
+                <div class="particle particle-3"></div>
+                <div class="particle particle-4"></div>
+                <div class="particle particle-5"></div>
+            </div>
+        </div>
+        <div class="home-content">
+            <img src="./images/logo.png" alt="Pixel Ache Studio Logo" class="home-logo">
+            <h1 class="main-title" data-i18n="home.title">PIXEL ACHE STUDIO</h1>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+                <div class="arrow-down"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="news" class="news-section">
+        <h2 class="section-title" data-i18n="nav.news">소식</h2>
+
+        <div id="featuredPortfolio" class="featured-portfolio">
+        </div>
+
+        <div id="portfolioGrid" class="portfolio-grid">
+        </div>
+    </section>
+
+    <footer class="footer">
+        <i class="fas fa-envelope footer-icon"></i>
+        <p class="footer-label">EMAIL ADDRESS</p>
+        <p class="footer-email">
+            <a href="mailto:pixel.ache.studio@gmail.com">pixel.ache.studio@gmail.com</a>
+        </p>
+    </footer>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>

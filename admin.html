@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Pixel Ache Studio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
+
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <i class="fas fa-shield-alt"></i>
+                <h1>Admin Panel</h1>
+                <p>Pixel Ache Studio 관리자 로그인</p>
+            </div>
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" class="form-input" placeholder="비밀번호를 입력하세요" required autofocus>
+                    <small class="form-help">기본 비밀번호: password</small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="fas fa-sign-in-alt"></i>
+                    로그인
+                </button>
+                <p id="login-error" class="error-message hidden"></p>
+            </form>
+            <div class="login-footer">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    메인 페이지로 돌아가기
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-dashboard" class="admin-dashboard hidden">
+        <header class="admin-header">
+            <div class="header-content">
+                <div class="header-left">
+                    <i class="fas fa-cog"></i>
+                    <h1>Portfolio 관리</h1>
+                </div>
+                <div class="header-right">
+                    <button id="preview-btn" class="btn btn-secondary">
+                        <i class="fas fa-eye"></i>
+                        미리보기
+                    </button>
+                    <button id="logout-btn" class="btn btn-outline">
+                        <i class="fas fa-sign-out-alt"></i>
+                        로그아웃
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="admin-main">
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="settings">
+                        <i class="fas fa-cog"></i>
+                        사이트 설정
+                    </button>
+                    <button class="tab-btn" data-tab="social">
+                        <i class="fas fa-share-nodes"></i>
+                        SNS 링크
+                    </button>
+                    <button class="tab-btn" data-tab="portfolio">
+                        <i class="fas fa-newspaper"></i>
+                        소식
+                    </button>
+                    <button class="tab-btn" data-tab="meta">
+                        <i class="fas fa-language"></i>
+                        다국어 메타
+                    </button>
+                    <button class="tab-btn" data-tab="json">
+                        <i class="fas fa-code"></i>
+                        JSON 직접 편집
+                    </button>
+                </div>
+
+                <section id="tab-settings" class="tab-content active">
+                    <div class="card">
+                        <h3>기본 설정</h3>
+                        <div class="form-group">
+                            <label for="settings-font">폰트</label>
+                            <select id="settings-font" class="form-input">
+                                <option value="Galmuri9">Galmuri9 (픽셀 폰트)</option>
+                                <option value="Galmuri11">Galmuri11</option>
+                                <option value="Galmuri7">Galmuri7</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="settings-email">이메일 주소</label>
+                            <input type="email" id="settings-email" class="form-input" placeholder="studio@example.com">
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>커스텀 폰트 관리</h3>
+                            <button id="add-custom-font-btn" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                폰트 추가
+                            </button>
+                        </div>
+                        <p class="form-help" style="margin-bottom: 1rem;">
+                            Google Fonts URL 또는 CDN URL을 추가하여 커스텀 폰트를 사용할 수 있습니다.
+                        </p>
+                        <div id="custom-fonts-list" class="font-list">
+                        </div>
+                        <div id="add-font-form" class="add-font-form hidden">
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="new-font-name">폰트 이름</label>
+                                <input type="text" id="new-font-name" class="form-input" placeholder="예: Noto Sans KR">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="new-font-url">폰트 URL (CSS)</label>
+                                <input type="text" id="new-font-url" class="form-input" placeholder="https://fonts.googleapis.com/css2?family=...">
+                                <small class="form-help">Google Fonts에서 @import URL을 복사하세요</small>
+                            </div>
+                            <div class="form-group" style="margin-bottom: 0;">
+                                <label for="new-font-family">CSS font-family 값</label>
+                                <input type="text" id="new-font-family" class="form-input" placeholder="예: 'Noto Sans KR', sans-serif">
+                            </div>
+                            <div style="display: flex; gap: 0.5rem; justify-content: flex-end;">
+                                <button id="cancel-add-font" class="btn btn-secondary">취소</button>
+                                <button id="save-add-font" class="btn btn-primary">추가</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>색상 테마</h3>
+                        <div class="color-grid">
+                            <div class="form-group">
+                                <label for="color-primary">Primary Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="color-primary" value="#00FF00">
+                                    <input type="text" id="color-primary-text" class="form-input" value="#00FF00" placeholder="#00FF00">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="color-secondary">Secondary Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="color-secondary" value="#00FFFF">
+                                    <input type="text" id="color-secondary-text" class="form-input" value="#00FFFF" placeholder="#00FFFF">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="color-background">Background Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="color-background" value="#0A0A0F">
+                                    <input type="text" id="color-background-text" class="form-input" value="#0A0A0F" placeholder="#0A0A0F">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="color-text">Text Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="color-text" value="#FFFFFF">
+                                    <input type="text" id="color-text-text" class="form-input" value="#FFFFFF" placeholder="#FFFFFF">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="color-accent">Accent Color</label>
+                                <div class="color-input-group">
+                                    <input type="color" id="color-accent" value="#B100FF">
+                                    <input type="text" id="color-accent-text" class="form-input" value="#B100FF" placeholder="#B100FF">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-social" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>SNS 링크 관리</h3>
+                            <button id="add-social-link" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                SNS 링크 추가
+                            </button>
+                        </div>
+                        <div id="social-links-container" class="social-links-grid">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-portfolio" class="tab-content">
+                    <div class="card">
+                        <h3>소식 관리</h3>
+                        <p class="form-help" style="margin-bottom: 1.5rem;">
+                            사이트의 소식을 추가하고 관리합니다.
+                        </p>
+                        <div class="portfolio-header">
+                            <button id="add-portfolio" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                새 소식 추가
+                            </button>
+                        </div>
+                        <div id="portfolio-container" class="portfolio-list">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-meta" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>다국어 메타 정보</h3>
+                            <button id="add-language-btn" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                                언어 추가
+                            </button>
+                        </div>
+                        <p class="form-help" style="margin-bottom: 1.5rem;">
+                            각 언어별로 사이트 제목과 설명을 설정합니다. SEO 및 소셜 카드에 사용됩니다.
+                        </p>
+
+                        <div class="lang-tabs" id="meta-lang-tabs">
+                        </div>
+                        <div class="lang-tab-contents" id="meta-lang-contents">
+                        </div>
+                    </div>
+                </section>
+
+                <section id="tab-json" class="tab-content">
+                    <div class="card">
+                        <h3>JSON 직접 편집</h3>
+                        <p class="warning-text">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            JSON 문법 오류가 있으면 사이트가 작동하지 않습니다. 신중하게 편집하세요.
+                        </p>
+                        <textarea id="json-editor" class="json-editor" spellcheck="false"></textarea>
+                        <div class="json-actions">
+                            <button id="validate-json" class="btn btn-secondary">
+                                <i class="fas fa-check-circle"></i>
+                                JSON 검증
+                            </button>
+                            <button id="format-json" class="btn btn-secondary">
+                                <i class="fas fa-indent"></i>
+                                자동 포맷
+                            </button>
+                        </div>
+                        <p id="json-validation-message" class="validation-message"></p>
+                    </div>
+                </section>
+
+                <div class="save-section">
+                    <button id="save-changes" class="btn btn-success btn-lg">
+                        <i class="fas fa-download"></i>
+                        JSON 파일 다운로드
+                    </button>
+                    <p class="save-help">다운로드된 파일을 data/ 폴더에 복사한 후 Git으로 커밋하세요.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="loading-overlay" class="loading-overlay hidden">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>처리 중...</p>
+        </div>
+    </div>
+
+    <div id="icon-picker-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>
+                    <i class="fas fa-icons"></i>
+                    SNS 아이콘 선택
+                </h3>
+                <button class="modal-close" onclick="AdminPanel.closeIconPicker()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="icon-search-container">
+                    <input type="text" id="icon-search" class="form-input" placeholder="아이콘 검색...">
+                </div>
+                <div id="icon-grid" class="icon-grid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="edit-portfolio-modal" class="modal">
+        <div class="modal-backdrop" onclick="AdminPanel.closeEditPortfolioModal()"></div>
+        <div class="modal-content modal-lg">
+            <div class="modal-header">
+                <h3 id="edit-modal-title">소식 편집</h3>
+                <button class="modal-close" id="close-edit-portfolio-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-portfolio-form">
+                    <div class="form-section">
+                        <h4><i class="fas fa-cog"></i> 공통 설정</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="edit-portfolio-featured">
+                                    <input type="checkbox" id="edit-portfolio-featured">
+                                    대표 소식으로 설정
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-portfolio-image">이미지 URL</label>
+                            <input type="text" id="edit-portfolio-image" class="form-input" placeholder="https://example.com/image.png">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-portfolio-youtube">YouTube URL</label>
+                            <input type="text" id="edit-portfolio-youtube" class="form-input" placeholder="https://youtube.com/watch?v=...">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group" style="flex: 2;">
+                                <label for="edit-portfolio-link">링크 URL</label>
+                                <input type="text" id="edit-portfolio-link" class="form-input" placeholder="https://store.steampowered.com/app/...">
+                            </div>
+                            <div class="form-group" style="flex: 1;">
+                                <label for="edit-portfolio-linktype">링크 타입</label>
+                                <select id="edit-portfolio-linktype" class="form-input">
+                                    <option value="auto">자동 감지</option>
+                                    <option value="button">버튼</option>
+                                    <option value="iframe">임베드</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h4><i class="fas fa-language"></i> 언어별 콘텐츠</h4>
+                        <div class="lang-tabs" id="edit-lang-tabs">
+                        </div>
+                        <div class="lang-tab-contents" id="edit-lang-contents">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-edit-portfolio-modal">취소</button>
+                <button class="btn btn-primary" id="save-edit-portfolio-modal">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
