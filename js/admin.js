@@ -184,6 +184,8 @@ const AdminPanel = (function() {
 
         populateMeta();
 
+        populateTranslations();
+
         updateJSONEditor();
     }
 
@@ -304,6 +306,100 @@ const AdminPanel = (function() {
             delete portfolioData.settings.meta[lang];
             populateMeta();
         }
+        if (portfolioData.settings?.translations && portfolioData.settings.translations[lang]) {
+            delete portfolioData.settings.translations[lang];
+            populateTranslations();
+        }
+    }
+
+    const TRANSLATION_KEYS = [
+        { key: 'nav.home', label: '네비게이션 - 홈', placeholder: '홈' },
+        { key: 'nav.news', label: '네비게이션 - 소식', placeholder: '소식' },
+        { key: 'home.title', label: '메인 타이틀', placeholder: 'PIXEL ACHE STUDIO' },
+        { key: 'readMore', label: '더 보기 버튼', placeholder: '자세히 보기' },
+        { key: 'loading', label: '로딩 텍스트', placeholder: '로딩 중' },
+        { key: 'error', label: '에러 메시지', placeholder: '데이터를 불러올 수 없습니다.' },
+        { key: 'empty', label: '빈 목록 메시지', placeholder: '아직 소식이 없습니다.' },
+        { key: 'email', label: '이메일 라벨', placeholder: '이메일' }
+    ];
+
+    function populateTranslations() {
+        const tabsContainer = document.getElementById('translations-lang-tabs');
+        const contentsContainer = document.getElementById('translations-lang-contents');
+        if (!tabsContainer || !contentsContainer) return;
+
+        tabsContainer.innerHTML = '';
+        contentsContainer.innerHTML = '';
+
+        if (!portfolioData.settings.translations) {
+            portfolioData.settings.translations = {};
+        }
+
+        const languages = portfolioData.settings.meta ? Object.keys(portfolioData.settings.meta) : ['ko', 'en', 'ja'];
+
+        languages.forEach((lang, idx) => {
+            const tabBtn = document.createElement('button');
+            tabBtn.type = 'button';
+            tabBtn.className = `lang-tab-btn${idx === 0 ? ' active' : ''}`;
+            tabBtn.dataset.lang = lang;
+            tabBtn.dataset.target = 'translations';
+            tabBtn.textContent = getLanguageDisplayName(lang);
+            tabBtn.onclick = () => switchTranslationsLangTab(lang);
+            tabsContainer.appendChild(tabBtn);
+
+            if (!portfolioData.settings.translations[lang]) {
+                portfolioData.settings.translations[lang] = {};
+            }
+
+            const trans = portfolioData.settings.translations[lang];
+
+            const tabContent = document.createElement('div');
+            tabContent.className = `lang-tab-content${idx === 0 ? ' active' : ''}`;
+            tabContent.dataset.lang = lang;
+            tabContent.dataset.target = 'translations';
+
+            let fieldsHtml = '';
+            TRANSLATION_KEYS.forEach(item => {
+                fieldsHtml += `
+                    <div class="form-group">
+                        <label for="trans-${lang}-${item.key}">${item.label}</label>
+                        <input type="text" id="trans-${lang}-${item.key}" class="form-input"
+                               placeholder="${item.placeholder}"
+                               value="${escapeHtml(trans[item.key] || '')}">
+                    </div>
+                `;
+            });
+
+            tabContent.innerHTML = fieldsHtml;
+            contentsContainer.appendChild(tabContent);
+        });
+    }
+
+    function switchTranslationsLangTab(lang) {
+        document.querySelectorAll('#translations-lang-tabs .lang-tab-btn').forEach(btn => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+        });
+
+        document.querySelectorAll('#translations-lang-contents .lang-tab-content').forEach(content => {
+            content.classList.toggle('active', content.dataset.lang === lang);
+        });
+    }
+
+    function collectTranslations() {
+        const translations = {};
+        const languages = portfolioData.settings.meta ? Object.keys(portfolioData.settings.meta) : ['ko', 'en', 'ja'];
+
+        languages.forEach(lang => {
+            translations[lang] = {};
+            TRANSLATION_KEYS.forEach(item => {
+                const input = document.getElementById(`trans-${lang}-${item.key}`);
+                if (input && input.value.trim()) {
+                    translations[lang][item.key] = input.value.trim();
+                }
+            });
+        });
+
+        return translations;
     }
 
     function setColorInputs(type, color) {
@@ -475,6 +571,7 @@ const AdminPanel = (function() {
                 email: emailInput ? emailInput.value : '',
                 twitterHandle: twitterInput ? twitterInput.value.trim() : '',
                 meta: collectMeta(),
+                translations: collectTranslations(),
                 ogImage: ogImageInput ? ogImageInput.value.trim() : '',
                 customFonts: portfolioData.settings?.customFonts || []
             },
@@ -816,7 +913,7 @@ const AdminPanel = (function() {
     function openEditPortfolioModal(index = null) {
         const modal = document.getElementById('edit-portfolio-modal');
         if (modal) {
-            modal.style.display = 'flex';
+            modal.classList.remove('hidden');
             populateEditPortfolioModal(index);
         }
     }
@@ -824,7 +921,7 @@ const AdminPanel = (function() {
     function closeEditPortfolioModal() {
         const modal = document.getElementById('edit-portfolio-modal');
         if (modal) {
-            modal.style.display = 'none';
+            modal.classList.add('hidden');
         }
     }
 
@@ -1342,6 +1439,16 @@ const AdminPanel = (function() {
         const addLanguageBtn = document.getElementById('add-language-btn');
         if (addLanguageBtn) {
             addLanguageBtn.addEventListener('click', () => {
+                const lang = prompt('추가할 언어 코드를 입력하세요 (예: fr, de, es):');
+                if (lang && lang.trim()) {
+                    addLanguage(lang.trim().toLowerCase());
+                }
+            });
+        }
+
+        const addTranslationLanguageBtn = document.getElementById('add-translation-language-btn');
+        if (addTranslationLanguageBtn) {
+            addTranslationLanguageBtn.addEventListener('click', () => {
                 const lang = prompt('추가할 언어 코드를 입력하세요 (예: fr, de, es):');
                 if (lang && lang.trim()) {
                     addLanguage(lang.trim().toLowerCase());

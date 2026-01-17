@@ -1,7 +1,7 @@
 let currentLang = 'ko';
 let data = null;
 
-const translations = {
+const defaultTranslations = {
     ko: {
         'nav.home': '홈',
         'nav.news': '소식',
@@ -33,6 +33,26 @@ const translations = {
         'email': 'メール'
     }
 };
+
+function getTranslations() {
+    if (data && data.settings && data.settings.translations) {
+        const merged = {};
+        const langs = Object.keys(data.settings.translations);
+        langs.forEach(lang => {
+            merged[lang] = {
+                ...(defaultTranslations[lang] || defaultTranslations['en']),
+                ...data.settings.translations[lang]
+            };
+        });
+        Object.keys(defaultTranslations).forEach(lang => {
+            if (!merged[lang]) {
+                merged[lang] = defaultTranslations[lang];
+            }
+        });
+        return merged;
+    }
+    return defaultTranslations;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     let savedLang = localStorage.getItem('language');
@@ -150,9 +170,10 @@ async function loadData() {
 }
 
 function updateLanguage() {
+    const translations = getTranslations();
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[currentLang][key]) {
+        if (translations[currentLang] && translations[currentLang][key]) {
             element.textContent = translations[currentLang][key];
         }
     });
@@ -267,7 +288,8 @@ function renderHomePage() {
             .map(item => renderPortfolioCard(item))
             .join('');
     } else {
-        portfolioGrid.innerHTML = `<div class="empty">${translations[currentLang]['empty']}</div>`;
+        const translations = getTranslations();
+        portfolioGrid.innerHTML = `<div class="empty">${translations[currentLang]?.['empty'] || 'No news yet.'}</div>`;
     }
 }
 
@@ -276,6 +298,7 @@ function renderFeaturedPortfolio(item) {
     const content = item.content[currentLang];
     if (!content) return '';
 
+    const translations = getTranslations();
     const tags = content.tags?.map(tag => `<span class="tag">${tag}</span>`).join('') || '';
     const imageHtml = item.imageUrl ? `<img src="${item.imageUrl}" alt="${content.title}" class="featured-image" onerror="this.style.display='none'">` : '';
 
@@ -290,9 +313,10 @@ function renderFeaturedPortfolio(item) {
     let linkHtml = '';
     if (item.link) {
         const linkType = item.linkType || 'auto';
+        const readMoreText = translations[currentLang]?.['readMore'] || 'Read More';
 
         if (linkType === 'button') {
-            linkHtml = `<a href="${item.link}" target="_blank" class="featured-link">${translations[currentLang]['readMore']}</a>`;
+            linkHtml = `<a href="${item.link}" target="_blank" class="featured-link">${readMoreText}</a>`;
         } else if (linkType === 'iframe') {
             linkHtml = `
                 <div class="link-embed">
@@ -308,7 +332,7 @@ function renderFeaturedPortfolio(item) {
                     </div>
                 `;
             } else {
-                linkHtml = `<a href="${item.link}" target="_blank" class="featured-link">${translations[currentLang]['readMore']}</a>`;
+                linkHtml = `<a href="${item.link}" target="_blank" class="featured-link">${readMoreText}</a>`;
             }
         }
     }
@@ -337,6 +361,9 @@ function renderPortfolioCard(item) {
     const content = item.content[currentLang];
     if (!content) return '';
 
+    const translations = getTranslations();
+    const readMoreText = translations[currentLang]?.['readMore'] || 'Read More';
+
     const tags = content.tags?.map(tag => `<span class="portfolio-tag">${tag}</span>`).join('') || '';
     const imageHtml = item.imageUrl ? `<img src="${item.imageUrl}" alt="${content.title}" class="portfolio-image" onerror="this.style.display='none'">` : '';
 
@@ -349,7 +376,7 @@ function renderPortfolioCard(item) {
         const linkType = item.linkType || 'auto';
 
         if (linkType === 'button') {
-            linkHtml = `<a href="${item.link}" target="_blank" class="portfolio-link"><i class="fas fa-external-link-alt"></i> ${translations[currentLang]['readMore']}</a>`;
+            linkHtml = `<a href="${item.link}" target="_blank" class="portfolio-link"><i class="fas fa-external-link-alt"></i> ${readMoreText}</a>`;
         } else if (linkType === 'iframe') {
             linkHtml = `
                 <div class="link-embed-small">
@@ -364,7 +391,7 @@ function renderPortfolioCard(item) {
                     </div>
                 `;
             } else {
-                linkHtml = `<a href="${item.link}" target="_blank" class="portfolio-link"><i class="fas fa-external-link-alt"></i> ${translations[currentLang]['readMore']}</a>`;
+                linkHtml = `<a href="${item.link}" target="_blank" class="portfolio-link"><i class="fas fa-external-link-alt"></i> ${readMoreText}</a>`;
             }
         }
     }
@@ -407,7 +434,8 @@ function getYouTubeEmbedUrl(url) {
 function showError() {
     const container = document.getElementById('featuredNews');
     if (container) {
-        container.innerHTML = `<div class="error">${translations[currentLang]['error']}</div>`;
+        const translations = getTranslations();
+        container.innerHTML = `<div class="error">${translations[currentLang]?.['error'] || 'Failed to load data.'}</div>`;
     }
 }
 

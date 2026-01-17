@@ -79,6 +79,10 @@
                         <i class="fas fa-language"></i>
                         다국어 메타
                     </button>
+                    <button class="tab-btn" data-tab="translations">
+                        <i class="fas fa-globe"></i>
+                        인터페이스 번역
+                    </button>
                     <button class="tab-btn" data-tab="json">
                         <i class="fas fa-code"></i>
                         JSON 직접 편집
@@ -247,6 +251,25 @@
                     </div>
                 </section>
 
+                <section id="tab-translations" class="tab-content">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>인터페이스 번역</h3>
+                            <button id="add-translation-language-btn" class="btn btn-primary btn-sm">
+                                <i class="fas fa-plus"></i>
+                                언어 추가
+                            </button>
+                        </div>
+                        <p class="form-help" style="margin-bottom: 1.5rem;">
+                            사이트 인터페이스의 텍스트를 언어별로 설정합니다. (네비게이션, 버튼 등)
+                        </p>
+                        <div class="lang-tabs" id="translations-lang-tabs">
+                        </div>
+                        <div class="lang-tab-contents" id="translations-lang-contents">
+                        </div>
+                    </div>
+                </section>
+
                 <section id="tab-json" class="tab-content">
                     <div class="card">
                         <h3>JSON 직접 편집</h3>
@@ -309,7 +332,7 @@
         </div>
     </div>
 
-    <div id="edit-portfolio-modal" class="modal">
+    <div id="edit-portfolio-modal" class="modal hidden">
         <div class="modal-backdrop" onclick="AdminPanel.closeEditPortfolioModal()"></div>
         <div class="modal-content modal-lg">
             <div class="modal-header">

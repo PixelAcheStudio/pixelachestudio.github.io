@@ -903,7 +903,7 @@ body {
 }
 
 .modal {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -912,6 +912,10 @@ body {
     z-index: 1000;
     justify-content: center;
     align-items: center;
+}
+
+.modal.hidden {
+    display: none;
 }
 
 .modal .modal-backdrop {
