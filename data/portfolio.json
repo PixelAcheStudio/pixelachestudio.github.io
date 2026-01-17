@@ -28,6 +28,11 @@
         "platform": "youtube",
         "url": "https://youtube.com/@PixelAcheStudio",
         "icon": "fab fa-youtube"
+      },
+      {
+        "platform": "new-platform",
+        "url": "https://",
+        "icon": "fas fa-link"
       }
     ],
     "email": "pixel.ache.studio@gmail.com",
@@ -62,17 +67,32 @@
         "ko": {
           "title": "Dungeon Crawler",
           "description": "어둠 속에서 빛을 찾아 나서는 로그라이크 던전 탐험 게임입니다. 픽셀 아트로 구현된 다양한 몬스터와 아이템, 그리고 매번 새롭게 생성되는 던전을 탐험하세요. 전략적인 전투와 자원 관리가 핵심인 도전적인 게임플레이를 경험해보세요.",
-          "tags": ["로그라이크", "던전", "픽셀아트", "액션"]
+          "tags": [
+            "로그라이크",
+            "던전",
+            "픽셀아트",
+            "액션"
+          ]
         },
         "en": {
           "title": "Dungeon Crawler",
           "description": "A roguelike dungeon exploration game where you search for light in the darkness. Explore dungeons filled with pixel art monsters and items, with procedurally generated levels. Experience challenging gameplay with strategic combat and resource management.",
-          "tags": ["Roguelike", "Dungeon", "Pixel Art", "Action"]
+          "tags": [
+            "Roguelike",
+            "Dungeon",
+            "Pixel Art",
+            "Action"
+          ]
         },
         "ja": {
           "title": "Dungeon Crawler",
           "description": "闇の中で光を探すローグライクダンジョン探検ゲームです。ピクセルアートで描かれた様々なモンスターとアイテム、そして毎回新しく生成されるダンジョンを探検してください。戦略的な戦闘とリソース管理が核心の挑戦的なゲームプレイを体験してください。",
-          "tags": ["ローグライク", "ダンジョン", "ピクセルアート", "アクション"]
+          "tags": [
+            "ローグライク",
+            "ダンジョン",
+            "ピクセルアート",
+            "アクション"
+          ]
         }
       },
       "link": "",
@@ -88,27 +108,36 @@
     },
     {
       "id": "news-1",
-      "featured": false,
+      "featured": true,
       "content": {
         "ko": {
           "title": "개발 일지 #1",
           "description": "새로운 프로젝트의 시작을 알립니다! 이번 개발 일지에서는 게임의 핵심 메카닉과 아트 스타일에 대해 소개합니다.",
-          "tags": ["개발일지", "소식"]
+          "tags": [
+            "개발일지",
+            "소식"
+          ]
         },
         "en": {
           "title": "Dev Log #1",
           "description": "Announcing the start of our new project! In this dev log, we introduce the core mechanics and art style of the game.",
-          "tags": ["DevLog", "News"]
+          "tags": [
+            "DevLog",
+            "News"
+          ]
         },
         "ja": {
           "title": "開発日記 #1",
           "description": "新しいプロジェクトの開始をお知らせします！この開発日記では、ゲームのコアメカニクスとアートスタイルについて紹介します。",
-          "tags": ["開発日記", "ニュース"]
+          "tags": [
+            "開発日記",
+            "ニュース"
+          ]
         }
       },
       "link": "",
       "linkType": "auto",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/Cq54DnQQ4h4?si=YBjVDE-BIF33W7R7",
       "imageUrl": "https://placehold.co/600x400/0A0A0F/00FFFF?text=Dev+Log+1",
       "socialCard": {
         "title": "",
@@ -119,25 +148,34 @@
     },
     {
       "id": "news-2",
-      "featured": false,
+      "featured": true,
       "content": {
         "ko": {
           "title": "스튜디오 소개",
           "description": "Pixel Ache Studio는 픽셀 아트에 대한 열정을 가진 인디 게임 개발팀입니다. 레트로 감성과 현대적인 게임플레이의 조화를 추구합니다.",
-          "tags": ["소개", "스튜디오"]
+          "tags": [
+            "소개",
+            "스튜디오"
+          ]
         },
         "en": {
           "title": "Studio Introduction",
           "description": "Pixel Ache Studio is an indie game development team with a passion for pixel art. We pursue a harmony of retro aesthetics and modern gameplay.",
-          "tags": ["Introduction", "Studio"]
+          "tags": [
+            "Introduction",
+            "Studio"
+          ]
         },
         "ja": {
           "title": "スタジオ紹介",
           "description": "Pixel Ache Studioは、ピクセルアートに情熱を持つインディーゲーム開発チームです。レトロな感性と現代的なゲームプレイの調和を追求しています。",
-          "tags": ["紹介", "スタジオ"]
+          "tags": [
+            "紹介",
+            "スタジオ"
+          ]
         }
       },
-      "link": "",
+      "link": "https://store.steampowered.com/app/1086940/Baldurs_Gate_3/",
       "linkType": "auto",
       "youtubeUrl": "",
       "imageUrl": "https://placehold.co/600x400/0A0A0F/B100FF?text=Studio+Intro",
@@ -147,6 +185,37 @@
         "image": ""
       },
       "createdAt": "2026-01-14T00:00:00Z"
+    },
+    {
+      "id": "1768667470164",
+      "featured": true,
+      "content": {
+        "ko": {
+          "title": "",
+          "description": "",
+          "tags": []
+        },
+        "en": {
+          "title": "",
+          "description": "",
+          "tags": []
+        },
+        "ja": {
+          "title": "",
+          "description": "",
+          "tags": []
+        }
+      },
+      "link": "https://store.steampowered.com/app/1086940/Baldurs_Gate_3/",
+      "linkType": "auto",
+      "youtubeUrl": "https://youtu.be/Cq54DnQQ4h4?si=YQda6faPXfL2CIIE",
+      "imageUrl": "images/logo.png",
+      "socialCard": {
+        "title": "",
+        "description": "",
+        "image": ""
+      },
+      "createdAt": "2026-01-17T16:31:10.164Z"
     }
   ]
 }
