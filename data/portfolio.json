@@ -76,7 +76,7 @@
   "portfolio": [
     {
       "id": "1768635435262",
-      "featured": true,
+      "featured": false,
       "content": {
         "ko": {
           "title": "test",
@@ -208,7 +208,7 @@
     },
     {
       "id": "news-2",
-      "featured": true,
+      "featured": false,
       "content": {
         "ko": {
           "title": "스튜디오 소개",
