@@ -28,11 +28,6 @@
         "platform": "youtube",
         "url": "https://youtube.com/@PixelAcheStudio",
         "icon": "fab fa-youtube"
-      },
-      {
-        "platform": "new-platform",
-        "url": "https://",
-        "icon": "fas fa-link"
       }
     ],
     "email": "pixel.ache.studio@gmail.com",
