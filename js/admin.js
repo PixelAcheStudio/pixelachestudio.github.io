@@ -1,4 +1,4 @@
-const ADMIN_PASSWORD_HASH = '19aaea8dd3c50b85a89253ad6d2331aa4c602b95153a2861deda6bfe1951ad5a';
+const ADMIN_PASSWORD_HASH = '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8';
 
 const STORAGE_KEYS = {
     ADMIN_SESSION: 'portfolio_admin_session'

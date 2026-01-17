@@ -509,6 +509,15 @@ a:hover {
     color: var(--neon-cyan);
 }
 
+.footer-copyright {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
 /* News Section Styles */
 .news-section {
     max-width: 1400px;
@@ -670,8 +679,10 @@ a:hover {
 .featured-portfolio {
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2rem;
     padding: 2rem 0 4rem;
     position: relative;
 }

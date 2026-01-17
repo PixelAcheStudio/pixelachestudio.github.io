@@ -307,11 +307,14 @@ function renderHomePage() {
 
     if (!featuredContainer || !portfolioGrid) return;
 
-    const featuredPortfolio = data.portfolio.find(item => item.featured);
+    const featuredPortfolios = data.portfolio.filter(item => item.featured);
     const regularPortfolio = data.portfolio.filter(item => !item.featured);
 
-    if (featuredPortfolio) {
-        featuredContainer.innerHTML = renderFeaturedPortfolio(featuredPortfolio);
+    if (featuredPortfolios.length > 0) {
+        featuredContainer.innerHTML = featuredPortfolios
+            .map(item => renderFeaturedPortfolio(item))
+            .join('');
+        featuredContainer.style.display = '';
     } else {
         featuredContainer.style.display = 'none';
     }
