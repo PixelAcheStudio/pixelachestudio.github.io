@@ -75,6 +75,42 @@
   },
   "portfolio": [
     {
+      "id": "1768635435262",
+      "featured": true,
+      "content": {
+        "ko": {
+          "title": "test",
+          "description": "test",
+          "tags": []
+        },
+        "en": {
+          "title": "test",
+          "description": "test",
+          "tags": []
+        },
+        "ja": {
+          "title": "test",
+          "description": "test",
+          "tags": []
+        },
+        "es": {
+          "title": "test",
+          "description": "test",
+          "tags": []
+        }
+      },
+      "link": "https://store.steampowered.com/app/1332010/Stray/",
+      "linkType": "auto",
+      "youtubeUrl": "",
+      "imageUrl": "",
+      "socialCard": {
+        "title": "",
+        "description": "",
+        "image": ""
+      },
+      "createdAt": "2026-01-17T07:37:15.262Z"
+    },
+    {
       "id": "featured-1",
       "featured": true,
       "content": {
@@ -116,7 +152,7 @@
       },
       "link": "https://store.steampowered.com/app/1332010/Stray/",
       "linkType": "auto",
-      "youtubeUrl": "https://youtu.be/Cq54DnQQ4h4?si=v-91IvzHNi-faQyc",
+      "youtubeUrl": "https://youtu.be/Yjbepc8pECI?si=UFVhNFWMF4rMsbkq",
       "imageUrl": "https://placehold.co/1200x600/0A0A0F/00FF00?text=Dungeon+Crawler",
       "socialCard": {
         "title": "Dungeon Crawler - Pixel Ache Studio",
@@ -204,9 +240,9 @@
           "tags": []
         }
       },
-      "link": "https://store.steampowered.com/app/1332010/Stray/",
+      "link": "",
       "linkType": "auto",
-      "youtubeUrl": "",
+      "youtubeUrl": "https://youtu.be/Yjbepc8pECI?si=UFVhNFWMF4rMsbkq",
       "imageUrl": "https://placehold.co/600x400/0A0A0F/B100FF?text=Studio+Intro",
       "socialCard": {
         "title": "",
@@ -214,42 +250,6 @@
         "image": ""
       },
       "createdAt": "2026-01-14T00:00:00Z"
-    },
-    {
-      "id": "1768635435262",
-      "featured": true,
-      "content": {
-        "ko": {
-          "title": "test",
-          "description": "",
-          "tags": []
-        },
-        "en": {
-          "title": "",
-          "description": "",
-          "tags": []
-        },
-        "ja": {
-          "title": "",
-          "description": "",
-          "tags": []
-        },
-        "es": {
-          "title": "test",
-          "description": "",
-          "tags": []
-        }
-      },
-      "link": "https://store.steampowered.com/app/1332010/Stray/",
-      "linkType": "auto",
-      "youtubeUrl": "https://youtu.be/Cq54DnQQ4h4?si=v-91IvzHNi-faQyc",
-      "imageUrl": "",
-      "socialCard": {
-        "title": "",
-        "description": "",
-        "image": ""
-      },
-      "createdAt": "2026-01-17T07:37:15.262Z"
     }
   ]
 }
